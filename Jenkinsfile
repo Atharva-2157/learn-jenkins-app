@@ -37,6 +37,11 @@ pipeline {
                             npm test
                         '''
                     }
+                    post () {
+                        always {
+                            junit 'jest-results/junit.xml'
+                        }
+                    }
                 }
 
                 stage('e2e') {
@@ -56,12 +61,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-
-    post () {
-        always {
-            junit 'jest-results/junit.xml'
         }
     }
 }
